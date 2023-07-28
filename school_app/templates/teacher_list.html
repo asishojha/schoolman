@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teachers List</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Tailwind CSS link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+    <!-- Add Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid #cbd5e0;
+            transition: background-color 0.2s;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .teacher-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .teacher-email {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .teacher-subjects {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .teacher-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-edit {
+            background-color: #17a2b8;
+            color: #ffffff;
+        }
+
+        .btn-edit:hover {
+            background-color: #138496;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+
+        .btn-delete:hover {
+            background-color: #b02a37;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #007bff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teachers List</h1>
+        <ul>
+            {% for teacher in teachers %}
+            <li>
+                <div>
+                    <span class="teacher-name">{{ teacher.first_name }} {{ teacher.last_name }}</span>
+                    <span class="teacher-email">{{ teacher.email }}</span>
+                    <span class="teacher-subjects">Subjects: {{ teacher.subjects.all|join:", " }}</span>
+                </div>
+                <div class="teacher-actions">
+                    <a href="{% url 'edit_teacher' teacher.pk %}" class="btn btn-edit">Edit</a>
+                    <a href="{% url 'delete_teacher' teacher.pk %}" class="btn btn-delete">Delete</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_teacher' %}" class="text-center">Add Teacher</a>
+    </div>
+
+    <!-- Add Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Profile</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .profile-container {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .student-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+
+        .profile-info {
+            margin-bottom: 10px;
+        }
+
+        .btn-edit {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Student Profile</h1>
+        <div class="profile-container">
+            <div class="student-name">{{ student.first_name }} {{ student.last_name }}</div>
+            <div class="profile-info"><strong>Roll Number:</strong> {{ student.roll_number }}</div>
+            <div class="profile-info"><strong>Date of Birth:</strong> {{ student.date_of_birth }}</div>
+            <div class="profile-info"><strong>Address:</strong> {{ student.address }}</div>
+            <!-- Add other student profile information here -->
+            <a href="{% url 'student_list' %}" class="btn btn-success btn-edit">Students List</a>
+            <button type="button" class="btn btn-primary btn-edit" data-toggle="modal" data-target="#editModal">
+                Edit Profile
+            </button>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Student Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Add your edit profile form here -->
+                    <!-- For simplicity, I'm showing a basic form with input fields -->
+                    <form method="post" action="{% url 'edit_student_profile' student.id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="first_name">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ student.first_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ student.last_name }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="roll_number">Roll Number:</label>
+                            <input type="text" class="form-control" id="roll_number" name="roll_number" value="{{ student.roll_number }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_of_birth">Date of Birth:</label>
+                            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ student.date_of_birth }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required>{{ student.address }}</textarea>
+                        </div>
+                        <!-- Add other student profile fields in the form -->
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

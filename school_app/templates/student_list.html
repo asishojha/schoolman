@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add custom CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            margin-top: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007BFF;
+        }
+
+        .student-list {
+            margin-top: 20px;
+        }
+
+        .student-name {
+            color: #007BFF;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Student List</h2>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="class">Class:</label>
+                    <select class="form-control" id="class" name="class">
+                        <option value="" {% if not selected_class %}selected{% endif %} disabled>Select a class</option>
+                        {% for class_section in class_sections %}
+                        <option value="{{ class_section.class_name }}" {% if selected_class == class_section.class_name %}selected{% endif %}>
+                            {{ class_section.class_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="section">Section:</label>
+                    <select class="form-control" id="section" name="section">
+                        <option value="" {% if not selected_section %}selected{% endif %} disabled>Select a section</option>
+                        {% for class_section in class_sections %}
+                        <option value="{{ class_section.section }}" {% if selected_section == class_section.section %}selected{% endif %}>
+                            Section {{ class_section.section }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="student-list">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>Class</th>
+                        <th>Section</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td class="student-name" data-href="{% url 'student_profile' student.id %}">{{ student.first_name }} {{ student.last_name }}</td>
+                        <td>{{ student.roll_number }}</td>
+                        {% if selected_class and selected_section %}
+                        <td>{{ selected_class }}</td>
+                        <td>{{ selected_section }}</td>
+                        {% else %}
+                        <td>-</td>
+                        <td>-</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add custom JavaScript -->
+    <script>
+        // JavaScript to handle student name click event
+        $(document).ready(function() {
+            $(".student-name").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+</body>
+</html>

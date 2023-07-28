@@ -1,0 +1,90 @@
+<!-- mark_attendance.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add custom CSS -->
+    <style>
+        /* Add your custom CSS here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Mark Attendance</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="class">Class:</label>
+                    <select class="form-control" id="class" name="class">
+                        <option value="" {% if not selected_class %}selected{% endif %} disabled>Select a class</option>
+                        {% for class_section in class_sections %}
+                        <option value="{{ class_section.class_name }}" {% if selected_class == class_section.class_name %}selected{% endif %}>
+                            {{ class_section.class_name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="section">Section:</label>
+                    <select class="form-control" id="section" name="section">
+                        <option value="" {% if not selected_section %}selected{% endif %} disabled>Select a section</option>
+                        {% for class_section in class_sections %}
+                        <option value="{{ class_section.section }}" {% if selected_section == class_section.section %}selected{% endif %}>
+                            Section {{ class_section.section }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </div>
+        </form>
+
+        <h3>Attendance for {{ today_date }}</h3>
+        <form method="post">
+            {% csrf_token %}
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>Attendance Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student.first_name }} {{ student.last_name }}</td>
+                        <td>{{ student.roll_number }}</td>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="{{ student.id }}" id="present_{{ student.id }}" value="Present">
+                                <label class="form-check-label" for="present_{{ student.id }}">Present</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="{{ student.id }}" id="absent_{{ student.id }}" value="Absent">
+                                <label class="form-check-label" for="absent_{{ student.id }}">Absent</label>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Save Attendance</button>
+        </form>
+    </div>
+
+    <!-- Add Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add custom JavaScript -->
+    <script>
+        // Add your custom JavaScript here if needed
+    </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SCHOOLMAN - School Management System</title>
+    <!-- Add meta tags, CSS links, Google Fonts, and other resources as needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS styles here */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #007BFF;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* Main Content styles */
+        .container {
+            padding-top: 60px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 600;
+            color: #007BFF;
+        }
+
+        .lead {
+            font-size: 20px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Add any additional CSS styles to customize the appearance */
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SCHOOLMAN</a>
+            <!-- Add navigation links, dropdowns, etc. as needed -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <!-- Add more menu items as needed -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Welcome to SCHOOLMAN</h1>
+                <p class="lead">Your one-stop solution for managing your school efficiently.</p>
+                <!-- Add call-to-action buttons, features, or other content here -->
+            </div>
+            <div class="col-md-6">
+                <!-- Add an image or any other content on the right side if desired -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-3">
+        <div class="container text-center">
+            <p>&copy; 2023 SCHOOLMAN. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Add JavaScript and jQuery links if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

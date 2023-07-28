@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Subject</title>
+</head>
+<body>
+    <h1>Add Subject</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Subject Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Add</button>
+    </form>
+    <a href="{% url 'subject_list' %}">Back to Subjects List</a>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SCHOOLMAN - Dashboard</title>
+    <!-- Add meta tags, CSS links, Google Fonts, and other resources as needed -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS styles here */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-link {
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            height: 100vh;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px 20px;
+        }
+
+        .sidebar a:hover {
+            background-color: #444;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        /* Add any additional CSS styles to customize the appearance */
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SCHOOLMAN</a>
+            <!-- Add navigation links, dropdowns, etc. as needed -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+                <!-- Add more menu items as needed -->
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'student_list' %}">Students</a>
+        <a href="#">Teachers</a>
+        <a href="#">Parents</a>
+        <a href="#">Classes</a>
+        <a href="#">Subjects</a>
+        <a href="#">Attendance</a>
+        <a href="#">Exams</a>
+        <a href="#">Assignments</a>
+        <a href="#">Timetable</a>
+        <a href="#">Events</a>
+        <a href="#">Fees</a>
+        <a href="#">Library</a>
+        <a href="#">Transport</a>
+        <a href="#">Notices</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Add the main content and management options for each table here -->
+        <h1>Welcome to the Dashboard</h1>
+        <p>You can manage all the tables here!</p>
+    </div>
+
+    <!-- Add JavaScript and jQuery links if needed -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
